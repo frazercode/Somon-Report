@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Azizsho Mizrobov" />
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <script
+      src="https://kit.fontawesome.com/cf6fa412bd.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="buttonsForm">
+        <div class="btnColor"></div>
+        <button id="btnSignin">Log in</button>
+        <button id="btnSignup">Register</button>
+      </div>
+
+      <form id="signin" method="post">
+        <input type="text" placeholder="Email or Username" required />
+        <i class="fas fa-envelope iEmail"></i>
+        <input type="password" placeholder="Password" required />
+        <i class="fas fa-lock iPassword"></i>
+        <div class="divCheck">
+          <input type="checkbox" />
+          <span>Remember Password</span>
+        </div>
+        <button type="submit">Sign in</button>
+      </form>
+
+      <form id="signup">
+        <p class="impr">
+          <i class="fa-thin fa-diamond-exclamation"></i>
+          <div class="exclaimer">
+          <ion-icon name="alert-circle"></ion-icon>
+          <span class="important">Important:</span> Please contact or visit the
+          administrator for setting you a <b>username</b> and a <b>password</b>.
+        </div>
+        </p>
+      </form>
+    </div>
+
+    <script src="index.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>
