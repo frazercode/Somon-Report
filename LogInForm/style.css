@@ -18,7 +18,7 @@ body {
   background-color: #f7f3f3;
   border: 1px solid #feb719;
   border-radius: 5px;
-  box-shadow: 0 0 10px #feb918;
+  box-shadow: 0 0 5px #feb918;
 }
 ion-icon {
   color: red;
