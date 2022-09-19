@@ -1,6 +1,7 @@
 import '../styles/NavigationBarStyles.css';
 import FlightIcon from '@mui/icons-material/Flight';
 import { useEffect, useRef } from 'react';
+import { logout } from '../api/User';
 
 export default function NavigationBar() {
     const navbar = useRef();
@@ -26,6 +27,11 @@ export default function NavigationBar() {
         return window.removeEventListener('scroll', onScroll);
     } , []);
 
+    const logoutAction = async () => {
+        await logout();
+        window.location.reload();
+    }
+
     return (
         <>
             <nav className="navbar" ref={navbar}>
@@ -40,10 +46,10 @@ export default function NavigationBar() {
                         <div class="icon cancel-btn" onClick={clickCancel}>
                             <i class="fas fa-times"></i>
                         </div>
-                        <li><a>Home</a></li>
-                        <li><a>New Report</a></li>
-                        <li><a>My Reports</a></li>
-                        <li><a>Log Out</a></li>
+                        <li>Home</li>
+                        <li>New Report</li>
+                        <li>My Reports</li>
+                        <li onClick={logoutAction}>Log Out</li>
                     </ul>
                     <div className="icon menu-btn" ref={menuBtn} onClick={clickMenu}>
                         <i className="fas fa-bars"></i>

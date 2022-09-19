@@ -6,8 +6,12 @@ const login = async (username, password) => {
 
 const me = async () => {
     return await request('GET', 'user/me');
+}
+
+const logout = async () => {
+    return await request('POST', 'user/logout');
 } 
 
 export { 
-    login,me
+    login,me,logout
 }
