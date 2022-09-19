@@ -1,0 +1,30 @@
+<html>
+    <body>
+        <form enctype="multipart/form-data" action="http://localhost/report" method="post">
+            <select name="type" id="selectType" value="On site">
+                <option value="On site">On site</option>
+                <option value="Internet">Internet</option>
+                <option value="Water damage">water damage</option>
+                <option value="">Other</option>
+            </select><br>
+            <input id="optionalType" style="display:none;" type="text" name="otherType" placeholder="other type" /><br>
+            <input type="text" name="title" placeholder="title" /> <br>
+            <textarea type="text" name="details" placeholder="details">
+
+            </textarea><br>
+            <input name="files" type="file" multiple />
+            <input type="submit" value="click me" />
+        </form>
+
+        <script>
+            let selectType = document.getElementById('selectType')
+            let optionalType = document.getElementById('optionalType')
+            selectType.onchange = (e) => {
+                if(!e.target.value) optionalType.style.display = "block";
+                else optionalType.style.display = "none";
+            }
+        </script>
+        <a href="http://localhost/report/file/1663426759825-vaccination.jpg" download>test</a>
+        <img src="http://localhost/report/file/1663426759825-vaccination.jpg" >
+    </body>
+</html>
