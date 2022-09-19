@@ -4,7 +4,18 @@ const path = require('path');
 const db = require('./models/Database');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const cors = require("cors");
 const app = express();
+
+// Enabling cors
+var corsOptions = {
+    credentials: true,
+    origin: function(origin, callback) {
+        callback(null, true);
+    }
+}
+
+app.use(cors(corsOptions));
 
 app.use(express.static(path.join(__dirname,"..","LogInForm")));
 app.use(express.json());

@@ -57,7 +57,7 @@ const login = async (req,res) => {
     if (!bcrypt.compareSync(password,user.password)) return res.status(401).send({message: "Incorrect password"});
     req.session.user = user;
     req.session.save();
-    res.send({message: "Login successful"});
+    res.send(user);
 }
 
 const logout = async (req,res) => {
@@ -65,6 +65,11 @@ const logout = async (req,res) => {
     res.send({message: "Logged out"});
 }
 
+const me = async (req,res) => {
+    if (!req.session.user) return res.send({});
+    res.send(req.session.user);
+}
+
 module.exports = {
-    add,remove,update,list,login,logout
+    add,remove,update,list,login,logout,me
 }
