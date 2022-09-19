@@ -43,7 +43,7 @@ ion-icon {
   box-shadow: 0 0 20px 0 darkgrey;
 }
 
-form {
+.loginForm {
   position: absolute;
   margin-top: 80px;
   transition: 0.5s;
@@ -75,8 +75,7 @@ form {
   transition: 0.3s;
 }
 
-input[type="text"],
-input[type="password"] {
+.loginText {
   border: none;
   margin-top: 40px;
   border-radius: 60px;
@@ -85,7 +84,7 @@ input[type="password"] {
   width: 100%;
 }
 
-button[type="submit"] {
+.loginSubmit {
   background: #ffac1c;
   color: white;
   border-radius: 30px;

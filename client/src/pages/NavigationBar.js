@@ -1,9 +1,13 @@
 import '../styles/NavigationBarStyles.css';
+import '../styles/ReportStyles.css';
 import FlightIcon from '@mui/icons-material/Flight';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { logout } from '../api/User';
+import CloseIcon from '@mui/icons-material/Close';
+import { AppBar, Button, Dialog, DialogContent, DialogTitle, IconButton, Toolbar, Typography } from '@mui/material';
 
 export default function NavigationBar() {
+    const [reportForm, setReportForm] = useState(false);
     const navbar = useRef();
     const menuBtn = useRef();
     const clickMenu = () => {
@@ -43,11 +47,11 @@ export default function NavigationBar() {
                         </div>
                     </div>
                     <ul className="menu-list">
-                        <div class="icon cancel-btn" onClick={clickCancel}>
-                            <i class="fas fa-times"></i>
+                        <div className="icon cancel-btn" onClick={clickCancel}>
+                            <i className="fas fa-times"></i>
                         </div>
-                        <li>Home</li>
-                        <li>New Report</li>
+                        {/* <li>Home</li> */}
+                        <li onClick={() => setReportForm(true)}>New Report</li>
                         <li>My Reports</li>
                         <li onClick={logoutAction}>Log Out</li>
                     </ul>
@@ -56,7 +60,63 @@ export default function NavigationBar() {
                     </div>
                 </div>
             </nav>
-            <div className="banner"></div>
+            <div className="banner">
+                <Dialog
+                    open={reportForm}
+                    fullWidth
+                    // fullScreen
+                >
+                    <AppBar color="inherit" sx={{ position: 'relative' }}>
+                        <Toolbar>
+                            <div style={{position:"relative", width: "100%", display:"flex", justifyContent: "center"}}>
+                                <Typography variant='h4' color='inherit'>Complaint Form</Typography>
+                                <div style={{position:"absolute", right: 1, height: "100%", display:"flex", alignItems:"center"}}>
+                                    <IconButton
+                                        edge="end"
+                                        color="inherit"
+                                        onClick={() => setReportForm(false)}
+                                    >
+                                        <CloseIcon />
+                                    </IconButton>
+                                </div>
+                            </div>
+                        </Toolbar>
+                    </AppBar>
+                    <DialogContent sx={{p:0}}>
+                        <section id="complaintMe" className="complaintMe">
+                            <form>
+                                <div className="field">
+                                    <input 
+                                        className="title" 
+                                        type="text" 
+                                        name="title" 
+                                        placeholder="Title of the Report" 
+                                    />
+                                    <label>Title</label>
+                                </div>
+                                <div className="field">
+                                    <input 
+                                        type="file" 
+                                        name="list" 
+                                        multiple 
+                                    />
+                                </div>
+                                <div className="field">
+                                    <textarea 
+                                        style={{resize: 'vertical'}} 
+                                        className="msg" 
+                                        rows="7" 
+                                        placeholder="Please add a description supporting your reason:"
+                                    ></textarea>
+                                    <label>Description</label>
+                                </div>
+
+                                <input className="button" type="submit" value="Send" />
+                            </form>
+                        </section>
+                    </DialogContent>
+                </Dialog>
+            </div>
             <div className="about">
                 <div className="content">
                     <div className="title">Welcome to Somon Air's Complaint Page.</div>

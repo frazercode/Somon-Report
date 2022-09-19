@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.complaintMe {
+  border-top: 15px solid #002038;
+  padding: 4em 2em 2em 2em;
+  text-align: center;
+  width: 100%;
+  max-width: 1100px;
+}
+form .field {
+  width: 100%;
+  position: relative;
+  color: #B6B6B6;
+  font-size:smaller;
+  font-weight:400;
+  margin-bottom: 15px;
+}
+form .field label {
+  text-transform: uppercase;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #002038;
+  width: 100%;
+  padding: 1em 0;
+  font-size: 1em;
+  letter-spacing: 0.075em;
+  -webkit-transition: all 333ms ease-in-out;
+  -moz-transition: all 333ms ease-in-out;
+  -o-transition: all 333ms ease-in-out;
+  -ms-transition: all 333ms ease-in-out;
+  transition: all 333ms ease-in-out;
+}
+form .field label + span {
+  font-family: 'SSStandard';
+  opacity: 0;
+  color: white;
+  display: block;
+  position: absolute;
+  top: 12px;
+  font-size: 1.5em;
+  text-shadow: 1px 2px 0 #cd6302;
+  -webkit-transition: all 333ms ease-in-out;
+  -moz-transition: all 333ms ease-in-out;
+  -o-transition: all 333ms ease-in-out;
+  -ms-transition: all 333ms ease-in-out;
+  transition: all 333ms ease-in-out;
+}
+form .field input[type="text"],
+form .field textarea {
+  border: none;
+  background: #E8E9EA;
+  width: 100%;
+  margin: 0;
+  padding: 1.4em 0;
+  padding-left: 160px;
+  color: #002038;
+  font-size: 0.8em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+form .field .msg input[type="text"],
+form .field textarea.msg {
+  max-height:47px;
+  resize: none;
+  -webkit-transition: all 333ms ease-in-out;
+  -moz-transition: all 333ms ease-in-out;
+  -o-transition: all 333ms ease-in-out;
+  -ms-transition: all 333ms ease-in-out;
+  transition: all 333ms ease-in-out;
+}
+
+form .field input[type="text"]:focus,
+form .field textarea:focus{
+  max-height:none;
+  outline: none;
+}
+form .field .msg input[type="text"]:focus, form .field .msg input[type="text"].focused,
+form .field .msg textarea:focus{
+  padding-bottom: 150px;
+}
+form .field input[type="text"]:focus + label,
+form .field textarea:focus + label{
+  width: 150px;
+  background: #f79600;
+  color: #002038;
+}
+
+form .field input[type="text"].focus + label,
+form .field textarea.focus + label {
+  color: #f79600;
+}
+form .field:hover label {
+  width: 150px;
+  background: #002038;
+  color: white;
+}
+form input[type="submit"] {
+  background: #f79600;
+  color: white;
+  -webkit-appearance: none;
+  border: none;
+  text-transform: uppercase;
+  position: relative;
+  padding: 13px 50px;
+  font-size: 1.4em;
+  letter-spacing: 0.1em;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  -webkit-transition: all 333ms ease-in-out;
+  -moz-transition: all 333ms ease-in-out;
+  -o-transition: all 333ms ease-in-out;
+  -ms-transition: all 333ms ease-in-out;
+  transition: all 333ms ease-in-out;
+}
+
+
+form input[type="submit"]:hover {
+  background: #002038;
+  color: #f79600;
+}
+form input[type="submit"]:focus {
+  outline: none;
+  background: #cd6302;
+}
+input[type=file]::file-selector-button {
+  /* margin-right: 20px; */
+  border: none;
+  background: #002038;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #B6B6B6;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+  background: #f79600;
+  color:#002038;
+}
