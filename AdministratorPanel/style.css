@@ -206,6 +206,7 @@
 .sidebar li.profile .name {
   font-size: 12px;
   padding-left: 3.75rem;
+  margin-top: 0.7813rem;
 }
 
 .sidebar .profile #log_out {

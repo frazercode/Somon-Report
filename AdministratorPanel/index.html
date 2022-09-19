@@ -1,101 +1,101 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="style.css" />
+<head>
+  <meta charset="UTF-8" />
 
-    <link
-      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Azizsho Mizrobov" />
-  </head>
-  <body>
-    <div class="sidebar">
-      <div class="logo-details">
-        <i class="bx bxs-plane-take-off icon"></i>
-        <div class="logo_name">ReportMe</div>
-        <i class="bx bx-menu" id="btn"></i>
-      </div>
-      <ul class="nav-list">
-        <li>
-          <i class="bx bx-search"></i>
-          <input type="text" placeholder="Search..." />
-          <span class="tooltip">Search</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bxs-report"></i>
-            <span class="links_name">Reports</span>
-          </a>
-          <span class="tooltip">Reports</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-user"></i>
-            <span class="links_name">Users</span>
-          </a>
-          <span class="tooltip">Users</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-log-in-circle"></i>
-            <span class="links_name">Logs</span>
-          </a>
-          <span class="tooltip">Logs</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-cog"></i>
-            <span class="links_name">Settings</span>
-          </a>
-          <span class="tooltip">Settings</span>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-log-out"></i>
-            <span class="links_name">Log Out</span>
-          </a>
-          <span class="tooltip">Log out</span>
-        </li>
-        <li class="profile">
-          <div class="profile-details">
-            <div class="name_job">
-              <div class="name">&copy; 2022 by AM</div>
-              <div class="job">Web developer</div>
-            </div>
-          </div>
-          <i class="bx bxs-plane-alt" id="log_out"></i>
-        </li>
-      </ul>
+  <link rel="stylesheet" href="style.css" />
+
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Azizsho Mizrobov" />
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class="bx bxs-plane-take-off icon"></i>
+      <div class="logo_name">ReportMe</div>
+      <i class="bx bx-menu" id="btn"></i>
     </div>
-    <section class="home-section">
-      <div class="text">Dashboard</div>
-    </section>
-    <script>
-      let sidebar = document.querySelector(".sidebar");
-      let closeBtn = document.querySelector("#btn");
-      let searchBtn = document.querySelector(".bx-search");
+    <ul class="nav-list">
+      <li>
+        <i class="bx bx-search"></i>
+        <input type="text" placeholder="Search..." />
+        <span class="tooltip">Search</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bxs-report"></i>
+          <span class="links_name">Reports</span>
+        </a>
+        <span class="tooltip">Reports</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-user"></i>
+          <span class="links_name">Users</span>
+        </a>
+        <span class="tooltip">Users</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-log-in-circle"></i>
+          <span class="links_name">Logs</span>
+        </a>
+        <span class="tooltip">Logs</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-cog"></i>
+          <span class="links_name">Settings</span>
+        </a>
+        <span class="tooltip">Settings</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-log-out"></i>
+          <span class="links_name">Log Out</span>
+        </a>
+        <span class="tooltip">Log out</span>
+      </li>
+      <li class="profile">
+        <div class="profile-details">
+          <div class="name_job">
+            <div class="name">&copy; 2022 by AM</div>
+            <!--<div class="job">Web developer</div>-->
+          </div>
+        </div>
+        <i class="bx bxs-plane-alt" id="log_out"></i>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <div class="text">Dashboard</div>
+  </section>
+  <script>
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
+    let searchBtn = document.querySelector(".bx-search");
 
-      closeBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("open");
-        menuBtnChange();
-      });
+    closeBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      menuBtnChange();
+    });
 
-      searchBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("open");
-        menuBtnChange();
-      });
+    searchBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      menuBtnChange();
+    });
 
-      function menuBtnChange() {
-        if (sidebar.classList.contains("open")) {
-          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-        } else {
-          closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-        }
+    function menuBtnChange() {
+      if (sidebar.classList.contains("open")) {
+        closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else {
+        closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
+
 </html>
