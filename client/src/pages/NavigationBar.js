@@ -6,6 +6,8 @@ import { logout } from '../api/User';
 import CloseIcon from '@mui/icons-material/Close';
 import { AppBar, Button, Dialog, DialogContent, DialogTitle, IconButton, Toolbar, Typography } from '@mui/material';
 import { useGlobalContext } from '../GlobalContext';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { api_location } from '../api/Request';
 
 export default function NavigationBar() {
     const [context,setContext] = useGlobalContext();
@@ -56,6 +58,7 @@ export default function NavigationBar() {
                         <li onClick={() => setReportForm(true)}>New Report</li>
                         <li>My Reports</li>
                         <li onClick={logoutAction}>Log Out</li>
+                        <li style={{display:"flex", alignItems:"center", fontSize: 14, fontWeight: 300}}><AccountCircleIcon style={{marginRight:8}} /> {context.username}</li>
                     </ul>
                     <div className="icon menu-btn" ref={menuBtn} onClick={clickMenu}>
                         <i className="fas fa-bars"></i>
@@ -86,7 +89,7 @@ export default function NavigationBar() {
                     </AppBar>
                     <DialogContent sx={{p:0}}>
                         <section id="complaintMe" className="complaintMe">
-                            <form>
+                            <form enctype="multipart/form-data" action={`${api_location}/report`} method="post">
                                 <div className="field">
                                     <input 
                                         className="title" 
@@ -102,12 +105,14 @@ export default function NavigationBar() {
                                         name="list" 
                                         multiple 
                                     />
+                                    <input name="type" value="" style={{display:"none"}} />
                                 </div>
                                 <div className="field">
                                     <textarea 
                                         style={{resize: 'none'}} 
                                         className="msg" 
                                         rows="7" 
+                                        name="details"
                                         placeholder="Please add a description supporting your reason:"
                                     ></textarea>
                                     <label>Description</label>

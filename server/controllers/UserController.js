@@ -29,7 +29,10 @@ const update = async (req,res) => {
     const {username,password,firstName,lastName,email,occupation,contactPhone,isAdmin} = req.body;
     let user = await UserModel.findOne({username});
     if (!user) return res.status(404).send({message: "User not found"});
-    if (password !== undefined) user.password = password;
+    if (password !== undefined){
+        let hashedPassword = bcrypt.hashSync(password,10);
+        user.password = hashedPassword;
+    } 
     if (firstName !== undefined) user.firstName = firstName;
     if (lastName !== undefined) user.lastName = lastName;
     if (email !== undefined) user.email = email;

@@ -13,9 +13,12 @@ import { IconButton } from '@mui/material';
 import { useState } from 'react';
 import { logout } from '../api/User';
 import { useGlobalContext } from '../GlobalContext';
+import UsersTable from '../components/UsersTable';
+import ReportsTable from '../components/ReportsTable';
 export default function AdminPanel(){
     const [context,setContext] = useGlobalContext();
     const [sidebar,setSidebar] = useState(false);
+    const [section,setSection] = useState(0);
     const logoutAction = async () => {
         await logout();
         setContext({...context, username: "", authorized: false, isAdmin: false})
@@ -43,7 +46,7 @@ export default function AdminPanel(){
                         <input type="text" placeholder="Search..." />
                         <span className="tooltip">Search</span>
                     </li>
-                <li>
+                <li onClick={() => setSection(1)}>
                     <a href="#">
                     <DescriptionIcon 
                         className="admin-btn"
@@ -53,7 +56,7 @@ export default function AdminPanel(){
                     </a>
                     <span className="tooltip">Reports</span>
                 </li>
-                <li>
+                <li onClick={() => setSection(2)}>
                     <a href="#">
                     <Person2OutlinedIcon 
                         className="admin-btn"
@@ -63,7 +66,7 @@ export default function AdminPanel(){
                     </a>
                     <span className="tooltip">Users</span>
                 </li>
-                <li>
+                {/* <li>
                     <a href="#">
                     <AlignHorizontalRightOutlinedIcon
                         className="admin-btn"
@@ -82,7 +85,7 @@ export default function AdminPanel(){
                     <span className="links_name">Settings</span>
                     </a>
                     <span className="tooltip">Settings</span>
-                </li>
+                </li> */}
                 <li onClick={logoutAction}>
                     <a href="#">
                     <LogoutOutlinedIcon 
@@ -102,7 +105,7 @@ export default function AdminPanel(){
                         <LocalAirportOutlinedIcon 
                             style={{ color:"white", position: 'absolute', right: 0, top:10,
                                 transform: "rotate(45deg)",
-                                background: "#11101d"
+                                background: "none"
                             }}
                             sx={{ml:1.5, mr:1.8}}
                         />
@@ -111,7 +114,9 @@ export default function AdminPanel(){
                 </ul>
             </div>
             <section className="home-section">
-                <div className="text">Dashboard</div>
+                {section === 0 && <div className="flex-section text">Welcome</div>}
+                {section === 1 && <ReportsTable />}
+                {section === 2 && <div className="flex-section"><UsersTable /></div>}
             </section>
         </>
     );

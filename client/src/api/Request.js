@@ -6,13 +6,17 @@ const request = async (method,path,body) => {
     method,
     url: `${api_location}/${path}`,
     withCredentials: true,
+    params: method.toLowerCase() === 'get' ? body : undefined,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    data: JSON.stringify(body)
+    data: method.toLowerCase() === 'get' ? undefined:JSON.stringify(body)
   });
   return response.data;
 };
 
 export default request;
+export {
+  api_location
+}

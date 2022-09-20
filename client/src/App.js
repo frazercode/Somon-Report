@@ -14,7 +14,6 @@ export default function App() {
 
   useEffect(() => {
     checkLogin();
-    console.log(context);
   }, []);
 
   return (

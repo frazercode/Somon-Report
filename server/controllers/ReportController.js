@@ -32,12 +32,12 @@ const add = async (req,res) => {
         id: uuid.v1(),
         title,
         details,
-        type,
         date: Date.now(),
         user: req.session.user.username,
         files: filesArr          
     }).save();
-    res.send(newReport);
+    var origin = req.get('origin');
+    res.redirect(origin);
 }
 
 const remove = async (req,res) => {
@@ -52,7 +52,9 @@ const list = async (req,res) => {
     let query = {};
     if (!req.session.user.isAdmin) query.user = req.session.user.username;
     if (type) query.type = new RegExp(type,'i'); 
-    res.send(await ReportModel.find(query).sort({date:'desc'}).skip(page*rowsPerPage).limit(rowsPerPage));
+    const list = await ReportModel.find(query).sort({date:'desc'}).skip(page*rowsPerPage).limit(rowsPerPage);
+    const count = await ReportModel.countDocuments(query);
+    res.send({count,list});
 }
 
 const serveFile = async (req,res) => {

@@ -240,7 +240,7 @@ li:hover .admin-btn{
 .home-section {
   position: relative;
   background: #e4e9f7;
-  min-height: 100vh;
+  height: 100vh;
   top: 0;
   left: 78px;
   width: calc(100% - 78px);
@@ -262,4 +262,9 @@ li:hover .admin-btn{
   .sidebar li .tooltip {
     display: none;
   }
+}
+
+.flex-section {
+  width: 100%;
+  height: 100vh;
 }
