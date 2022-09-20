@@ -8,7 +8,7 @@ const add = async (req,res) => {
     const {title,details,type} = req.fields;
     let filesArr = [];
     let files = req.files.list;
-    console.log(files);
+    // console.log(files);
     if (!Array.isArray(files) && files.path){
         files = [req.files.list];
     }
@@ -56,7 +56,7 @@ const list = async (req,res) => {
 }
 
 const serveFile = async (req,res) => {
-    // if (!req.session.user?.username) return res.status(401).send("");
+    if (!req.session.user?.username) return res.status(401).send("");
     let decodedPath = decodeURIComponent(req.params.path);
     console.log(decodedPath);
     res.sendFile(pathNode.join(__dirname,'../files/',`${decodedPath}`))

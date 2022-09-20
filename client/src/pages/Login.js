@@ -41,23 +41,23 @@ export default function LoginPage(){
                     <button onClick={goSignUp}>Register</button>
                 </div>
                 
-                <form onSubmit={submitLogin} style={{left: isLogin? 25 : -450 }}>
+                <form className="loginForm" onSubmit={submitLogin} style={{left: isLogin? 25 : -450 }}>
                     <div style={{position:"relative"}}>
-                        <input type="text" placeholder="Username" value={username} onChange={(e)=> setUsername(e.target.value)} required />
+                        <input className="loginText" type="text" placeholder="Username" value={username} onChange={(e)=> setUsername(e.target.value)} required />
                         <EmailIcon fontSize="small" style={{color:"#ffac1c", position:"absolute", left:12,top:48 }} />
                     </div>
                     <div style={{position:"relative"}}>
-                        <input type="password" placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)} required />
+                        <input className="relative loginText" type="password" placeholder="Password" value={password} onChange={(e)=> setPassword(e.target.value)} required />
                         <LockIcon fontSize="small" style={{color:"#ffac1c", position:"absolute", left:12,top:48 }} />
                     </div>
                     <div className="divCheck">
                         <input style={{}} type="checkbox" />
                         <span style={{marginLeft: 6}} >Remember Password</span>
                     </div>
-                    <button type="submit">Sign in</button>
+                    <button className="loginSubmit" type="submit">Sign in</button>
                 </form>
                 
-                <form style={{left: isLogin ? 450 : 25 }}>
+                <form className="loginForm" style={{left: isLogin ? 450 : 25 }}>
                     <p className="impr">
                         <i className="fa-thin fa-diamond-exclamation"></i>
                         <div className="exclaimer">
