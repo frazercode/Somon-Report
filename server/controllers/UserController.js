@@ -29,13 +29,13 @@ const update = async (req,res) => {
     const {username,password,firstName,lastName,email,occupation,contactPhone,isAdmin} = req.body;
     let user = await UserModel.findOne({username});
     if (!user) return res.status(404).send({message: "User not found"});
-    if (password) user.password = password;
-    if (firstName) user.firstName = firstName;
-    if (lastName) user.lastName = lastName;
-    if (email) user.email = email;
-    if (occupation) user.occupation = occupation;
-    if (contactPhone) user.contactPhone = contactPhone;
-    if (isAdmin) user.isAdmin = isAdmin;
+    if (password !== undefined) user.password = password;
+    if (firstName !== undefined) user.firstName = firstName;
+    if (lastName !== undefined) user.lastName = lastName;
+    if (email !== undefined) user.email = email;
+    if (occupation !== undefined) user.occupation = occupation;
+    if (contactPhone !== undefined) user.contactPhone = contactPhone;
+    if (isAdmin !== undefined) user.isAdmin = isAdmin;
     res.send(await user.save());
 }
 

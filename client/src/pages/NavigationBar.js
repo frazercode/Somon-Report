@@ -5,8 +5,10 @@ import { useEffect, useRef, useState } from 'react';
 import { logout } from '../api/User';
 import CloseIcon from '@mui/icons-material/Close';
 import { AppBar, Button, Dialog, DialogContent, DialogTitle, IconButton, Toolbar, Typography } from '@mui/material';
+import { useGlobalContext } from '../GlobalContext';
 
 export default function NavigationBar() {
+    const [context,setContext] = useGlobalContext();
     const [reportForm, setReportForm] = useState(false);
     const navbar = useRef();
     const menuBtn = useRef();
@@ -33,7 +35,7 @@ export default function NavigationBar() {
 
     const logoutAction = async () => {
         await logout();
-        window.location.reload();
+        setContext({...context, username: "", authorized: false, isAdmin: false})
     }
 
     return (
@@ -66,17 +68,17 @@ export default function NavigationBar() {
                     fullWidth
                     // fullScreen
                 >
-                    <AppBar color="inherit" sx={{ position: 'relative' }}>
+                    <AppBar style={{background:"#002038"}} color="inherit" sx={{ position: 'relative' }}>
                         <Toolbar>
                             <div style={{position:"relative", width: "100%", display:"flex", justifyContent: "center"}}>
-                                <Typography variant='h4' color='inherit'>Complaint Form</Typography>
+                                <Typography sx={{fontFamily:"'Lato', sans-serif", fontSize:"1.2em", color:"#B6B6B6"}} variant='p' color='inherit'>COMPLAINT FORM</Typography>
                                 <div style={{position:"absolute", right: 1, height: "100%", display:"flex", alignItems:"center"}}>
                                     <IconButton
                                         edge="end"
                                         color="inherit"
                                         onClick={() => setReportForm(false)}
                                     >
-                                        <CloseIcon />
+                                        <CloseIcon style={{color:"#B6B6B6"}} />
                                     </IconButton>
                                 </div>
                             </div>
@@ -103,7 +105,7 @@ export default function NavigationBar() {
                                 </div>
                                 <div className="field">
                                     <textarea 
-                                        style={{resize: 'vertical'}} 
+                                        style={{resize: 'none'}} 
                                         className="msg" 
                                         rows="7" 
                                         placeholder="Please add a description supporting your reason:"
