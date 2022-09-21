@@ -17,6 +17,7 @@ import UsersTable from '../components/UsersTable';
 import ReportsTable from '../components/ReportsTable';
 export default function AdminPanel(){
     const [context,setContext] = useGlobalContext();
+    const [search,setSearch] = useState("");
     const [sidebar,setSidebar] = useState(false);
     const [section,setSection] = useState(0);
     const logoutAction = async () => {
@@ -43,7 +44,7 @@ export default function AdminPanel(){
                         >
                             <SearchIcon />
                         </IconButton>
-                        <input type="text" placeholder="Search..." />
+                        <input type="text" placeholder="Search..." value={search} onChange={(e) => setSearch(e.target.value)} />
                         <span className="tooltip">Search</span>
                     </li>
                 <li onClick={() => setSection(1)}>
@@ -115,8 +116,8 @@ export default function AdminPanel(){
             </div>
             <section className="home-section">
                 {section === 0 && <div className="flex-section text">Welcome</div>}
-                {section === 1 && <ReportsTable />}
-                {section === 2 && <div className="flex-section"><UsersTable /></div>}
+                {section === 1 && <ReportsTable search={search} />}
+                {section === 2 && <div className="flex-section"><UsersTable search={search} /></div>}
             </section>
         </>
     );

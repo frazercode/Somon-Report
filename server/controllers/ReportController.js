@@ -48,9 +48,10 @@ const remove = async (req,res) => {
 
 const list = async (req,res) => {
     if (!req.session.user?.username) return res.status(401).send({message:"Not authorized"});
-    const {page,rowsPerPage,type} = req.query;
+    const {page,rowsPerPage,type,user} = req.query;
     let query = {};
     if (!req.session.user.isAdmin) query.user = req.session.user.username;
+    if (user) query.user = new RegExp(user,'i');
     if (type) query.type = new RegExp(type,'i'); 
     const list = await ReportModel.find(query).sort({date:'desc'}).skip(page*rowsPerPage).limit(rowsPerPage);
     const count = await ReportModel.countDocuments(query);
@@ -60,7 +61,8 @@ const list = async (req,res) => {
 const serveFile = async (req,res) => {
     if (!req.session.user?.username) return res.status(401).send("");
     let decodedPath = decodeURIComponent(req.params.path);
-    console.log(decodedPath);
+    res.setHeader('Content-Type', 'application/force-download');
+	res.setHeader('Content-Disposition', `attachment; filename="${req.params.path}";filename*=utf-8''${req.params.path}`)
     res.sendFile(pathNode.join(__dirname,'../files/',`${decodedPath}`))
 }
 

@@ -50,7 +50,10 @@ const remove = async (req,res) => {
 
 const list = async (req,res) => {
     if (!req.session.user?.isAdmin) return res.status(401).send({message:"Not authorized"});
-    res.send(await UserModel.find({}));
+    const {user} = req.query;
+    let query = {};
+    if (user) query.username = new RegExp(user, 'i');
+    res.send(await UserModel.find(query));
 }
 
 const login = async (req,res) => {

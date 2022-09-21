@@ -1,10 +1,11 @@
 import { AppBar, Button, Dialog, DialogContent, DialogTitle, Grid, IconButton, TextField, Toolbar } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { addUser, deleteUser, listUsers, updateUser } from '../api/User';
 import CloseIcon from '@mui/icons-material/Close';
 import '../styles/UsersTableStyles.css';
 import { useGlobalContext } from '../GlobalContext';
-export default function UsersTable() {
+export default function UsersTable(props) {
+    const [isPending, startTransition] = useTransition();
     const [context, setContext] = useGlobalContext();
     const [users,setUsers] = useState([]);
     const [addDialog, setAddDialog] = useState(false);
@@ -43,17 +44,19 @@ export default function UsersTable() {
         setEmail("");
         setAddDialog(false);
     }
-    const loadUsers = async() => {
-        let res = await listUsers();
-        if (!Array.isArray(res) || res.message) {
-            return alert(res.message);
-        }
-        setUsers(res);
+    const loadUsers = () => {
+        startTransition( async () => {
+            let res = await listUsers(props.search);
+            if (!Array.isArray(res) || res.message) {
+                return alert(res.message);
+            }
+            setUsers(res);
+        })
     }
 
     useEffect(()=>{
         loadUsers();
-    },[]);
+    },[props.search]);
 
     const deleteAction = async (username) => {
         if (context.username === username) return alert("You can not delete yourself");
@@ -73,7 +76,10 @@ export default function UsersTable() {
             arr.push(obj);
             
         }
-        else row[infoType] = newInfo;
+        else{
+            row[infoType] = newInfo;
+            if (!row[infoType]) delete row[infoType];
+        } 
         setChangedInfo([...arr]);
     }
 

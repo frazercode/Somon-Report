@@ -25,7 +25,7 @@ export default function LoginPage(){
         e.preventDefault();
         try {
             let res = await login(username,password);
-            console.log(res);
+            if (res.message) return alert(res.message);
             if (res.username) setContext({...context,authorized: true,username:res.username,isAdmin:res.isAdmin });
         } catch( err ){
             console.log(err);

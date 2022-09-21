@@ -12,8 +12,8 @@ const logout = async () => {
     return await request('POST', 'user/logout');
 }
 
-const listUsers = async () => {
-    return await request('GET', 'user');
+const listUsers = async (user) => {
+    return await request('GET', 'user', {user});
 }
 
 const addUser = async (userInfo) => {

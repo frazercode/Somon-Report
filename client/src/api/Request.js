@@ -7,6 +7,7 @@ const request = async (method,path,body) => {
     url: `${api_location}/${path}`,
     withCredentials: true,
     params: method.toLowerCase() === 'get' ? body : undefined,
+    validateStatus: () => true,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

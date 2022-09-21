@@ -8,17 +8,22 @@ import { AppBar, Button, Dialog, DialogContent, DialogTitle, IconButton, Toolbar
 import { useGlobalContext } from '../GlobalContext';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { api_location } from '../api/Request';
+import ReportsTable from '../components/ReportsTable';
+import {useWindowSize} from '@react-hook/window-size';
 
 export default function NavigationBar() {
+    const [width,height] = useWindowSize({wait: 20});
     const [context,setContext] = useGlobalContext();
     const [reportForm, setReportForm] = useState(false);
+    const [myReports, setMyReports] = useState(false);
+    const formRef = useRef();
     const navbar = useRef();
     const menuBtn = useRef();
     const clickMenu = () => {
         navbar.current.classList.add("show");
         menuBtn.current.classList.add("hide");
     }
-
+    
     const clickCancel = () => {
         navbar.current.classList.remove("show");
         menuBtn.current.classList.remove("hide");
@@ -39,7 +44,6 @@ export default function NavigationBar() {
         await logout();
         setContext({...context, username: "", authorized: false, isAdmin: false})
     }
-
     return (
         <>
             <nav className="navbar" ref={navbar}>
@@ -54,11 +58,12 @@ export default function NavigationBar() {
                         <div className="icon cancel-btn" onClick={clickCancel}>
                             <i className="fas fa-times"></i>
                         </div>
-                        {/* <li>Home</li> */}
                         <li onClick={() => setReportForm(true)}>New Report</li>
-                        <li>My Reports</li>
+                        <li onClick={() => setMyReports(true)}>My Reports</li>
                         <li onClick={logoutAction}>Log Out</li>
-                        <li style={{display:"flex", alignItems:"center", fontSize: 14, fontWeight: 300}}><AccountCircleIcon style={{marginRight:8}} /> {context.username}</li>
+                        <li style={{display:"flex", alignItems:"center", justifyContent:"center", fontSize: 14, fontWeight: 300}}>
+                            <AccountCircleIcon style={{marginRight:8}} /> {context.username}
+                        </li>
                     </ul>
                     <div className="icon menu-btn" ref={menuBtn} onClick={clickMenu}>
                         <i className="fas fa-bars"></i>
@@ -69,7 +74,7 @@ export default function NavigationBar() {
                 <Dialog
                     open={reportForm}
                     fullWidth
-                    // fullScreen
+                    fullScreen={width < 768? true:false}
                 >
                     <AppBar style={{background:"#002038"}} color="inherit" sx={{ position: 'relative' }}>
                         <Toolbar>
@@ -95,7 +100,8 @@ export default function NavigationBar() {
                                         className="title" 
                                         type="text" 
                                         name="title" 
-                                        placeholder="Title of the Report" 
+                                        placeholder="Title of the Report"
+                                        required
                                     />
                                     <label>Title</label>
                                 </div>
@@ -114,6 +120,7 @@ export default function NavigationBar() {
                                         rows="7" 
                                         name="details"
                                         placeholder="Please add a description supporting your reason:"
+                                        required
                                     ></textarea>
                                     <label>Description</label>
                                 </div>
@@ -122,6 +129,28 @@ export default function NavigationBar() {
                             </form>
                         </section>
                     </DialogContent>
+                </Dialog>
+                <Dialog
+                    open={myReports}
+                    fullScreen
+                >
+                        <AppBar style={{background:"#002038"}} color="inherit" sx={{ position: 'relative' }}>
+                            <Toolbar>
+                                <div style={{position:"relative", width: "100%", display:"flex", justifyContent: "center"}}>
+                                    <Typography sx={{fontFamily:"'Lato', sans-serif", fontSize:"1.2em", color:"#B6B6B6"}} variant='p' color='inherit'>MY REPORTS</Typography>
+                                    <div style={{position:"absolute", right: 1, height: "100%", display:"flex", alignItems:"center"}}>
+                                        <IconButton
+                                            edge="end"
+                                            color="inherit"
+                                            onClick={() => setMyReports(false)}
+                                        >
+                                            <CloseIcon style={{color:"#B6B6B6"}} />
+                                        </IconButton>
+                                    </div>
+                                </div>
+                            </Toolbar>
+                        </AppBar>
+                        <ReportsTable search="" notAdmin />
                 </Dialog>
             </div>
             <div className="about">

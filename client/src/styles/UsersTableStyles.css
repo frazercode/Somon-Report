@@ -43,7 +43,12 @@
     color: #fff;
     border-bottom: solid 1px rgba(255,255,255,0.1);
 }
- 
+
+.flex-section .description .MuiInputBase-input{
+    font-size: 0.9em;
+    border-bottom: none;
+}
+
 .flex-section section{
     margin: 50px;
 }
