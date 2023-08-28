@@ -1,3 +1,2 @@
 # Somon-Report
-Complaint Form
-Welcome to team AM.
+This is a developed a web browser application called the "Somon Air Complaint Form." This platform is designed for members of the Somon Air company to register and gain access to a complaint submission system. Once registered, users can submit their complaints through the platform. An administrator has the authority to view these complaints and take necessary actions to address and manage the reported issues. This system facilitates efficient communication and resolution of concerns within the company.
